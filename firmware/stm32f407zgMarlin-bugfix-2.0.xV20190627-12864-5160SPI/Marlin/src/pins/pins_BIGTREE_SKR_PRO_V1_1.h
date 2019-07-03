@@ -49,8 +49,6 @@
 
 //#define SERVO0_PIN        PC9  
 #define SERVO0_PIN        PA1
-//#define SERVO0_PIN        PA2
-
 
 //
 // Limit Switches
@@ -184,7 +182,7 @@
 #define FAN2_PIN            PE6  // Fan2
 
 
-
+#define PS_ON_PIN         PF8
 //
 // Misc. Functions
 //
