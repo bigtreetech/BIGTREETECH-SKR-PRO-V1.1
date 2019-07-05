@@ -1,17 +1,6 @@
-1. Introduction to firmware version naming rules in BIGTREETECH-SKR-PRO-V1.1:
-	
-For example: stm32f407zgMarlin-bugfix-2.0.xV20190627-12864-5160SPI	
-
-stm32f407zg 		The model of the main control chip
-Marlin-bugfix-2.0.x                   Marlin firmware version
-V20190627		Marlin 2.0 firmware version downloaded on June 27, 2019
-12864			Screen configured in firmware
-5160			Model of motor driven chip in firmware.
-SPI 			Driver chip SPI driver mode
-usually			General-purpose,16-segment by default
-uart			Driver chip uart driver mode
-16div 			16 Subdivisions
-
+1. Sometimes an error occurs when compiling this branch for the first time. Please Close vscode and reopen, then compiling will be normal.
+2. the usb cdc serial is not ok now, so please dont set the SERIAL_PORT to '-1', we will fix the issue as soon as possible before this weekend
+3. if you want use tmc2208 uart mode, please copy 3 files in SoftwareSerial folder to your platformio install path for example "C:\Users\<your user name>\.platformio\packages\framework-arduinoststm32\cores\arduino" and comment out the "typedef int8_t pin_t" in file "Marlin\src\HAL\HAL_STM32\HAL.h" line 135
 
 Note: if you want to design your own version naming rules, folder names must not exceed 64 characters in length, 
 marlin 2.0 project files in other folders, folder nesting depth can not exceed 3, 
