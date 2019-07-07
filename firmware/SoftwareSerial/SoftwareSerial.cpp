@@ -261,11 +261,6 @@ inline void SoftwareSerial::handle_interrupt() {
   if (active_out) active_out->send();
 }
 
-extern "C" void TIM4_IRQHandler(void) {
-  TIM4->SR &= ~(1<<0);
-  SoftwareSerial::handle_interrupt();
-}
-
 //
 // Constructor
 //
