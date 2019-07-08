@@ -156,10 +156,11 @@
 //
 // Temperature Sensors
 //
-#define TEMP_0_PIN         PF3  // T0
-#define TEMP_1_PIN         PF4  // T1
-#define TEMP_2_PIN         PF5  // T2
-#define TEMP_BED_PIN       PF6  // TB
+#define TEMP_BED_PIN       PF3  // TB
+#define TEMP_0_PIN         PF4  // T0
+#define TEMP_1_PIN         PF5  // T1
+#define TEMP_2_PIN         PF6  // T2
+
 
 //
 // Heaters / Fans
