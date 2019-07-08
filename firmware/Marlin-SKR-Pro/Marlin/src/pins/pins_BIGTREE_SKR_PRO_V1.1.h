@@ -112,7 +112,7 @@
   #define TMC_SW_SCK       PC10
 #endif
 
-#if HAS_DRIVER(TMC2208)
+#if HAS_DRIVER(TMC2208) || HAS_DRIVER(TMC2209)
   /**
    * TMC2208 stepper drivers
    *
