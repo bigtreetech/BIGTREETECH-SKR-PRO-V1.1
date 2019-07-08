@@ -19,27 +19,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
 #pragma once
 
 #ifndef TARGET_STM32F4
   #error "Oops! Select an STM32F4 board in 'Tools > Board.'"
 #endif
 
-#ifndef BOARD_NAME
-  #define BOARD_NAME "BIGTREE SKR Pro V1.1"
-#endif
-
-#define EEPROM_EMULATED_WITH_SRAM
-
 #if HOTENDS > 3 || E_STEPPERS > 3
   #error "BIGTREE SKR Pro V1.1 supports up to 3 hotends / E-steppers."
 #endif
 
+#define BOARD_NAME "BIGTREE SKR Pro V1.1"
+
+#define EEPROM_EMULATED_WITH_SRAM
+
 //
 // Servos
 //
-#define SERVO0_PIN        PA1
+#define SERVO0_PIN         PA1
 
 //
 // Limit Switches
@@ -112,7 +109,7 @@
   #define TMC_SW_SCK       PC10
 #endif
 
-#if HAS_DRIVER(TMC2208)
+#if HAS_DRIVER(TMC2208) || HAS_DRIVER(TMC2209)
   /**
    * TMC2208 stepper drivers
    *
@@ -135,31 +132,31 @@
   // Software serial
   //   
   #define X_SERIAL_TX_PIN  PC13
-  #define X_SERIAL_RX_PIN  PE4
+  #define X_SERIAL_RX_PIN  PC13
 
   #define Y_SERIAL_TX_PIN  PE3
-  #define Y_SERIAL_RX_PIN  PE2
+  #define Y_SERIAL_RX_PIN  PE3
 
-  #define Z_SERIAL_TX_PIN  PE0
+  #define Z_SERIAL_TX_PIN  PE1
   #define Z_SERIAL_RX_PIN  PE1
 
   #define E0_SERIAL_TX_PIN PD4
-  #define E0_SERIAL_RX_PIN PD2
+  #define E0_SERIAL_RX_PIN PD4
 
-  #define E1_SERIAL_TX_PIN PD0
+  #define E1_SERIAL_TX_PIN PD1
   #define E1_SERIAL_RX_PIN PD1
 
-  #define Z2_SERIAL_TX_PIN PD6
-  #define Z2_SERIAL_RX_PIN PD5
+  #define E2_SERIAL_TX_PIN PD6
+  #define E2_SERIAL_RX_PIN PD6
 #endif
 
 //
 // Temperature Sensors
 //
-#define TEMP_0_PIN         PF3  // T0
-#define TEMP_1_PIN         PF4  // T1
-#define TEMP_2_PIN         PF5  // T2
-#define TEMP_BED_PIN       PF6  // TB
+#define TEMP_0_PIN         PF4  // T1 <-> E0
+#define TEMP_1_PIN         PF5  // T2 <-> E1
+#define TEMP_2_PIN         PF6  // T3 <-> E2
+#define TEMP_BED_PIN       PF3  // T0 <-> Bed
 
 //
 // Heaters / Fans
@@ -187,54 +184,51 @@
 |               ￣￣                                               ￣￣
 |               EXP2                                              EXP1
 */
-#if ENABLED(ULTRA_LCD)
-  #define BEEPER_PIN        PG4
-  #define BTN_ENC           PA8
+#if HAS_SPI_LCD
+  #define BEEPER_PIN       PG4
+  #define BTN_ENC          PA8
 
   #if ENABLED(CR10_STOCKDISPLAY)
-    #define LCD_PINS_RS     PG6
+    #define LCD_PINS_RS    PG6
 
-    #define BTN_EN1         PD11
-    #define BTN_EN2         PG2
+    #define BTN_EN1        PD11
+    #define BTN_EN2        PG2
 
     #define LCD_PINS_ENABLE PG7
-    #define LCD_PINS_D4     PG3
+    #define LCD_PINS_D4    PG3
 
   #else
 
-    #define LCD_PINS_RS     PD10
+    #define LCD_PINS_RS    PD10
 
-    #define BTN_EN1         PG10
-    #define BTN_EN2         PF11
-    #define SD_DETECT_PIN   PF12
+    #define BTN_EN1        PG10
+    #define BTN_EN2        PF11
+    #define SD_DETECT_PIN  PF12
 
-    #define LCD_SDSS        PB12
+    #define LCD_SDSS       PB12
 
     #define LCD_PINS_ENABLE PD11
-    #define LCD_PINS_D4     PG2
+    #define LCD_PINS_D4    PG2
 
     #if ENABLED(ULTIPANEL)
-      #define LCD_PINS_D5   PG3
-      #define LCD_PINS_D6   PG6
-      #define LCD_PINS_D7   PG7
+      #define LCD_PINS_D5  PG3
+      #define LCD_PINS_D6  PG6
+      #define LCD_PINS_D7  PG7
     #endif
 
   #endif
 
-#endif // ULTRA_LCD
+  // Alter timing for graphical display
+  #if HAS_GRAPHICAL_LCD
+    #ifndef ST7920_DELAY_1
+      #define ST7920_DELAY_1 DELAY_NS(96)
+    #endif
+    #ifndef ST7920_DELAY_2
+      #define ST7920_DELAY_2 DELAY_NS(48)
+    #endif
+    #ifndef ST7920_DELAY_3
+      #define ST7920_DELAY_3 DELAY_NS(600)
+    #endif
+  #endif
 
-#define SCK_PIN          PB13
-#define MISO_PIN         PB14
-#define MOSI_PIN         PB15
-#define SS_PIN           PB12   // Chip select for SD card used by Marlin
-
-// Alter timing for graphical display
-#ifndef ST7920_DELAY_1
-  #define ST7920_DELAY_1 DELAY_NS(96)
-#endif
-#ifndef ST7920_DELAY_2
-  #define ST7920_DELAY_2 DELAY_NS(48)
-#endif
-#ifndef ST7920_DELAY_3
-  #define ST7920_DELAY_3 DELAY_NS(715)
-#endif
+#endif // HAS_SPI_LCD

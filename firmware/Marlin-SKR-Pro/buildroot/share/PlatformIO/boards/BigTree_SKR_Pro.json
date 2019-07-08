@@ -16,7 +16,7 @@
     ],
     "ldscript": "stm32f407xg.ld",
     "mcu": "stm32f407zgt6",
-    "variant": "MARLIN_F407ZG"
+    "variant": "BIGTREE_GENERIC_STM32F407_5X"
   },
   "debug": {
     "jlink_device": "STM32F407ZG",
@@ -48,8 +48,8 @@
   "name": "STM32F407ZG (192k RAM. 1024k Flash)",
   "upload": {
     "disable_flushing": false,
-    "maximum_ram_size": 131072,
-    "maximum_size": 514288,
+    "maximum_ram_size": 196608,
+    "maximum_size": 1048576,
     "protocol": "stlink",
     "protocols": [
       "stlink",
