@@ -29,7 +29,9 @@
   #error "BIGTREE SKR Pro V1.1 supports up to 3 hotends / E-steppers."
 #endif
 
-#define BOARD_NAME "BIGTREE SKR Pro V1.1"
+#ifndef BOARD_NAME
+  #define BOARD_NAME "BIGTREE SKR Pro V1.1"
+#endif
 
 //#define SRAM_EEPROM_EMULATION
 //#define FLASH_EEPROM_EMULATION                  //Use Flash Emulation Eeprom Store Data Otherwise Use SDCard Emulation EEprom Store Data
