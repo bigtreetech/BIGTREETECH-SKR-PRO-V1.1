@@ -31,7 +31,8 @@
 
 #define BOARD_NAME "BIGTREE SKR Pro V1.1"
 
-#define EEPROM_EMULATED_WITH_SRAM
+//#define SRAM_EEPROM_EMULATION
+//#define FLASH_EEPROM_EMULATION                  //Use Flash Emulation Eeprom Store Data Otherwise Use SDCard Emulation EEprom Store Data
 
 //
 // Servos
